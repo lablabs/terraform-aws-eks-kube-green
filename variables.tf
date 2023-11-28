@@ -24,7 +24,7 @@ variable "helm_chart_name" {
 
 variable "helm_chart_version" {
   type        = string
-  default     = "<helm_chart_version>"
+  default     = "0.0.11"
   description = "Version of the Helm chart"
 }
 
@@ -36,7 +36,7 @@ variable "helm_release_name" {
 
 variable "helm_repo_url" {
   type        = string
-  default     = "<helm_repo_url>"
+  default     = "https://kube-green.additi.fr/"
   description = "Helm repository"
 }
 
