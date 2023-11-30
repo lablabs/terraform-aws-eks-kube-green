@@ -4,16 +4,6 @@ variable "enabled" {
   description = "Variable indicating whether deployment is enabled"
 }
 
-variable "cluster_identity_oidc_issuer" {
-  type        = string
-  description = "The OIDC Identity issuer for the cluster"
-}
-
-variable "cluster_identity_oidc_issuer_arn" {
-  type        = string
-  description = "The OIDC Identity issuer ARN for the cluster that can be used to associate IAM roles with a service account"
-}
-
 # ================ common variables (required) ================
 
 variable "helm_chart_name" {
@@ -62,74 +52,6 @@ variable "values" {
   type        = string
   default     = ""
   description = "Additional yaml encoded values which will be passed to the Helm chart, see https://hub.helm.sh/charts/stable/kube-green"
-}
-
-# ================ IRSA variables (optional) ================
-
-variable "rbac_create" {
-  type        = bool
-  default     = true
-  description = "Whether to create and use RBAC resources"
-}
-
-variable "service_account_create" {
-  type        = bool
-  default     = true
-  description = "Whether to create Service Account"
-}
-
-variable "service_account_name" {
-  type        = string
-  default     = "kube-green"
-  description = "The k8s kube-green service account name"
-}
-
-variable "irsa_role_create" {
-  type        = bool
-  default     = true
-  description = "Whether to create IRSA role and annotate service account"
-}
-
-variable "irsa_policy_enabled" {
-  type        = bool
-  default     = true
-  description = "Whether to create opinionated policy to allow operations on specified zones in `policy_allowed_zone_ids`."
-}
-
-variable "irsa_assume_role_enabled" {
-  type        = bool
-  default     = false
-  description = "Whether IRSA is allowed to assume role defined by irsa_assume_role_arn."
-}
-
-variable "irsa_assume_role_arn" {
-  type        = string
-  default     = ""
-  description = "Assume role arn. Assume role must be enabled."
-}
-
-variable "irsa_additional_policies" {
-  type        = map(string)
-  default     = {}
-  description = "Map of the additional policies to be attached to default role. Where key is arbitrary id and value is policy arn."
-}
-
-variable "irsa_role_name_prefix" {
-  type        = string
-  default     = "kube-green-irsa"
-  description = "The IRSA role name prefix for kube-green"
-}
-
-variable "irsa_tags" {
-  type        = map(string)
-  default     = {}
-  description = "IRSA resources tags"
-}
-
-variable "aws_partition" {
-  type        = string
-  default     = "aws"
-  description = "AWS partition in which the resources are located. Available values are `aws`, `aws-cn`, `aws-us-gov`"
 }
 
 # ================ argo variables (required) ================
