@@ -2,7 +2,6 @@ module "addon_installation_disabled" {
   source = "../../"
 
   enabled = false
-
 }
 
 module "addon_installation_helm" {
@@ -30,11 +29,10 @@ module "addon_installation_argo_kubernetes" {
   })
 
   argo_sync_policy = {
-    "automated" : {}
-    "syncOptions" = ["CreateNamespace=true"]
+    automated   = {}
+    syncOptions = ["CreateNamespace=true"]
   }
 }
-
 
 module "addon_installation_argo_helm" {
   source = "../../"
@@ -43,8 +41,12 @@ module "addon_installation_argo_helm" {
   argo_enabled      = true
   argo_helm_enabled = true
 
+  values = yamlencode({
+    # insert sample values here
+  })
+
   argo_sync_policy = {
-    "automated" : {}
-    "syncOptions" = ["CreateNamespace=true"]
+    automated   = {}
+    syncOptions = ["CreateNamespace=true"]
   }
 }
